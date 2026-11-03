@@ -1,0 +1,57 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Xcode
+## User settings
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+## Build generated
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+.swiftpm/
+
+## CocoaPods / Carthage (if ever added)
+Pods/
+Carthage/Build/
+
+# Distribution artifacts (built locally, not committed)
+*.app
+*.dmg
+dist/
+export/
+*.zip
+
+# Credentials / secrets — never commit these
+*.p12
+*.cer
+*.provisionprofile
+ExportOptions.plist
+notarize.env
+.env
