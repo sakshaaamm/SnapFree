@@ -25,17 +25,6 @@ See all releases on the [Releases page](https://github.com/sakshaaamm/SnapFree/r
 ## Requirements
 
 - macOS 13.0 or later
-- Xcode 15 or later (to build from source)
-
-## Building from source
-
-```bash
-git clone https://github.com/sakshaaamm/SnapFree.git
-cd SnapFree
-xcodebuild -scheme SnapFree -configuration Debug build
-```
-
-Or open `SnapFree.xcodeproj` in Xcode and run.
 
 ## Permissions
 
