@@ -1,12 +1,16 @@
+<p align="center">
+  <img src="SnapFree/Resources/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png" width="128" alt="SnapFree icon">
+</p>
+
 # SnapFree
 
 A fast, native macOS screenshot and screen-recording app built with SwiftUI and ScreenCaptureKit.
 
 ## Download
 
-**[⬇️ Download the latest version (v1.0)](https://github.com/sakshaaamm/SnapFree/releases/latest)**
+**[⬇️ Download the latest version](https://github.com/sakshaaamm/SnapFree/releases/latest)**
 
-1. Download `SnapFree-1.0.zip` from the release page
+1. Download the `SnapFree-x.x.zip` file from the release page
 2. Unzip and drag **SnapFree.app** into your `/Applications` folder
 3. On first launch, right-click SnapFree.app → **Open** to get past the macOS security prompt (this build is signed but not notarized)
 
