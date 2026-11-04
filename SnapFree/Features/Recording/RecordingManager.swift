@@ -189,16 +189,27 @@ final class RecordingManager: NSObject, ObservableObject {
     }
     
     func stop() async {
+        await finishRecording(streamAlreadyStopped: false)
+    }
+    
+    /// Single teardown path used by every way a recording can end: the
+    /// SnapFree Stop button, the menu item, or macOS stopping the stream itself
+    /// (e.g. the user clicks Stop in the system's purple menu bar indicator).
+    /// Hides the face cam and stops the mic FIRST so they disappear instantly,
+    /// then finalizes the video file so the recording is still saved.
+    private func finishRecording(streamAlreadyStopped: Bool) async {
         guard isRecording else { return }
         isRecording = false
         
         cameraOverlay.hide()
         micRecorder.stop()
         
-        do {
-            try await stream?.stopCapture()
-        } catch {
-            print("⚠️ stopCapture error: \(error)")
+        if !streamAlreadyStopped {
+            do {
+                try await stream?.stopCapture()
+            } catch {
+                print("⚠️ stopCapture error: \(error)")
+            }
         }
         stream = nil
         
@@ -307,10 +318,13 @@ final class RecordingManager: NSObject, ObservableObject {
 
 extension RecordingManager: SCStreamDelegate {
     nonisolated func stream(_ stream: SCStream, didStopWithError error: Error) {
-        print("⚠️ Stream stopped with error: \(error)")
+        // Called when macOS ends the capture on its own, most commonly when the
+        // user clicks Stop in the system screen-recording indicator. Run the
+        // full teardown so the face cam closes and the file is saved, instead
+        // of just resetting state (which left the camera panel on screen).
+        print("⚠️ Stream stopped by system: \(error)")
         Task { @MainActor in
-            self.isRecording = false
-            self.cleanup()
+            await self.finishRecording(streamAlreadyStopped: true)
         }
     }
 }
